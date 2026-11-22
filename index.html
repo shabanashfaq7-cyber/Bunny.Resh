@@ -184,4 +184,1087 @@
 
       <div class="grid grid-cols-2 gap-3">
         <div class="glass-panel rounded-3xl p-4 relative overflow-hidden">
-          <div class="
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold text-indigo-300 flex items-center gap-1">🐰 Bunny</span>
+            <span id="bunnyTime" class="text-[10px] text-slate-400">Live</span>
+          </div>
+          <div id="bunnyMoodEmoji" class="text-3xl mb-1">🥰</div>
+          <div id="bunnyMoodText" class="text-xs font-bold text-white">Missing Mutu</div>
+          <p id="bunnyNote" class="text-[11px] text-slate-300 mt-1 line-clamp-2 italic">"Thinking about you..."</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-4 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold text-rose-300 flex items-center gap-1">👸🏻 Mutu</span>
+            <span id="mutuTime" class="text-[10px] text-slate-400">Live</span>
+          </div>
+          <div id="mutuMoodEmoji" class="text-3xl mb-1">💖</div>
+          <div id="mutuMoodText" class="text-xs font-bold text-white">Feeling Loved</div>
+          <p id="mutuNote" class="text-[11px] text-slate-300 mt-1 line-clamp-2 italic">"Waiting for my Bunny..."</p>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-3xl p-4 flex items-center justify-between gap-3 border border-rose-500/30">
+        <div>
+          <div class="text-xs font-extrabold text-rose-200 uppercase tracking-wider">Touch-to-Feel Pulse</div>
+          <p id="lastHeartbeatLabel" class="text-xs text-slate-300 mt-0.5">Tap the heart to send a vibration & love pulse!</p>
+        </div>
+        <button onclick="sendHeartbeat()" class="w-14 h-14 rounded-2xl rose-gradient flex items-center justify-center shadow-lg shadow-rose-500/40 active:scale-90 transition shrink-0 heart-pulse">
+          <i class="fa-solid fa-heart text-2xl text-white"></i>
+        </button>
+      </div>
+
+      <div class="glass-panel rounded-3xl p-4 space-y-3">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-rose-200">Update Your Live Mood</h3>
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="setQuickMood('🥺', 'Missing You')" class="py-2 px-2 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5">
+            <span>🥺</span> Missing You
+          </button>
+          <button onclick="setQuickMood('🔥', 'Hot & Romantic')" class="py-2 px-2 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5">
+            <span>🔥</span> Hot Mood
+          </button>
+          <button onclick="setQuickMood('🤗', 'Need a Hug')" class="py-2 px-2 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5">
+            <span>🤗</span> Need Hug
+          </button>
+          <button onclick="setQuickMood('😤', 'Thoda Gussa')" class="py-2 px-2 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5">
+            <span>😤</span> Gussa
+          </button>
+          <button onclick="setQuickMood('🫡', 'Busy on Duty')" class="py-2 px-2 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5">
+            <span>🫡</span> On Duty
+          </button>
+          <button onclick="setQuickMood('💋', 'Craving Kisses')" class="py-2 px-2 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/10 text-xs font-semibold flex items-center justify-center gap-1.5">
+            <span>💋</span> Kiss Mood
+          </button>
+        </div>
+        <div class="flex gap-2">
+          <input type="text" id="customStatusInput" placeholder="Write a quick status line for partner..."
+            class="flex-1 px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/15 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500" />
+          <button onclick="saveCustomStatusNote()" class="px-4 py-2.5 rounded-xl rose-gradient text-xs font-bold text-white shadow">
+            Update
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-3xl p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-300">Special Countdown</span>
+            <h3 id="countdownTitleDisplay" class="text-sm font-extrabold text-white">Our Dream Rainy Mountain Trip 🏔️</h3>
+          </div>
+          <button onclick="toggleCountdownEditor()" class="px-2.5 py-1 rounded-lg bg-white/10 text-[11px] font-bold text-rose-200">
+            Edit Date
+          </button>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2 text-center">
+          <div class="bg-black/30 rounded-2xl py-2.5">
+            <div id="cdDays" class="text-lg font-extrabold text-rose-300">00</div>
+            <div class="text-[10px] text-slate-400">DAYS</div>
+          </div>
+          <div class="bg-black/30 rounded-2xl py-2.5">
+            <div id="cdHours" class="text-lg font-extrabold text-rose-300">00</div>
+            <div class="text-[10px] text-slate-400">HOURS</div>
+          </div>
+          <div class="bg-black/30 rounded-2xl py-2.5">
+            <div id="cdMins" class="text-lg font-extrabold text-rose-300">00</div>
+            <div class="text-[10px] text-slate-400">MINS</div>
+          </div>
+          <div class="bg-black/30 rounded-2xl py-2.5">
+            <div id="cdSecs" class="text-lg font-extrabold text-amber-300">00</div>
+            <div class="text-[10px] text-slate-400">SECS</div>
+          </div>
+        </div>
+
+        <div id="countdownEditor" class="hidden pt-2 border-t border-white/10 space-y-2">
+          <input type="text" id="cdTitleInput" placeholder="Event name (e.g. Mutu Birthday / Trip)"
+            class="w-full px-3 py-2 rounded-xl bg-white/10 border border-white/15 text-xs text-white" />
+          <div class="flex gap-2">
+            <input type="datetime-local" id="cdDateInput"
+              class="flex-1 px-3 py-2 rounded-xl bg-white/10 border border-white/15 text-xs text-white" />
+            <button onclick="saveCountdownSettings()" class="px-4 py-2 rounded-xl gold-rose-gradient text-xs font-bold text-slate-950">Save</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: PRIVATE LIVE CHAT + PHOTOS + MEGA STICKERS -->
+    <section id="tab-chat" class="hidden space-y-3">
+      <div class="glass-panel rounded-3xl p-3.5 flex flex-col h-[72vh]">
+        <div class="flex items-center justify-between pb-2.5 border-b border-white/10 shrink-0">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-xs font-extrabold text-white">Bunny & Mutu Secret Chat</span>
+          </div>
+          <button onclick="clearAllChat()" class="px-2.5 py-1 rounded-lg bg-white/10 text-[11px] text-rose-300 hover:bg-rose-500/20 font-bold">
+            <i class="fa-solid fa-broom mr-1"></i>Clear
+          </button>
+        </div>
+
+        <div id="chatMessagesBox" class="flex-1 overflow-y-auto py-3 space-y-3 pr-1">
+          <p class="text-xs text-slate-400 text-center py-8">Loading private messages...</p>
+        </div>
+
+        <!-- MEGA ROMANCE & HOT STICKERS DRAWER -->
+        <div id="stickerDrawer" class="hidden bg-black/65 border border-rose-500/35 rounded-2xl p-2.5 mb-2 space-y-2 shrink-0">
+          <div class="flex items-center justify-between gap-1">
+            <div class="flex gap-1">
+              <button type="button" onclick="renderStickerPack('hot')" id="stkTabHot" class="px-2.5 py-1 rounded-lg hot-gradient text-white text-[10px] font-extrabold">
+                🔥 Bold & Hot
+              </button>
+              <button type="button" onclick="renderStickerPack('love')" id="stkTabLove" class="px-2.5 py-1 rounded-lg bg-white/10 text-slate-300 text-[10px] font-bold">
+                💖 Deep Love
+              </button>
+              <button type="button" onclick="renderStickerPack('cute')" id="stkTabCute" class="px-2.5 py-1 rounded-lg bg-white/10 text-slate-300 text-[10px] font-bold">
+                🥺 Cute & Manana
+              </button>
+            </div>
+            <button type="button" onclick="toggleStickerDrawer()" class="text-slate-400 hover:text-white px-1.5 text-xs">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div id="stickerGrid" class="grid grid-cols-3 gap-1.5 max-h-40 overflow-y-auto pr-0.5"></div>
+        </div>
+
+        <!-- Quick Hot & Photo Strip -->
+        <div class="flex items-center gap-1.5 py-1.5 overflow-x-auto shrink-0">
+          <button type="button" onclick="toggleStickerDrawer()" class="px-3 py-1.5 rounded-full hot-gradient text-white text-[11px] font-extrabold shrink-0 shadow flex items-center gap-1">
+            <i class="fa-solid fa-face-kiss-wink-heart"></i> Stickers 🔥
+          </button>
+          <button type="button" onclick="document.getElementById('chatPhotoInput').click()" class="px-3 py-1.5 rounded-full bg-indigo-600 text-white text-[11px] font-extrabold shrink-0 shadow flex items-center gap-1">
+            <i class="fa-solid fa-camera"></i> Send Pic
+          </button>
+          <button type="button" onclick="sendStickerCard('🔥', 'Come Closer Jaan...', 'Aaj raat sirf tumhari baatein aur tumhara khayal hai 😈', 'hot')" class="px-2.5 py-1 rounded-full bg-rose-500/20 border border-rose-400/30 text-rose-200 text-[11px] font-bold shrink-0">
+            🔥 Come Closer
+          </button>
+          <button type="button" onclick="sendStickerCard('💋', 'Deep Passionate Kiss', 'Ek lambi si pyaari kiss sirf tumhare liye 💋❤️', 'hot')" class="px-2.5 py-1 rounded-full bg-rose-500/20 border border-rose-400/30 text-rose-200 text-[11px] font-bold shrink-0">
+            💋 Deep Kiss
+          </button>
+        </div>
+
+        <!-- Hidden File Input for Camera / Gallery Photos -->
+        <input type="file" id="chatPhotoInput" accept="image/*" class="hidden" onchange="handleChatPhotoUpload(event)" />
+
+        <form id="chatForm" class="flex gap-1.5 pt-1.5 border-t border-white/10 shrink-0">
+          <button type="button" onclick="document.getElementById('chatPhotoInput').click()" title="Send Photo or Selfie"
+            class="w-10 h-10 rounded-2xl bg-white/10 hover:bg-indigo-500/30 text-indigo-300 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-camera text-sm"></i>
+          </button>
+          <button type="button" onclick="toggleStickerDrawer()" title="Stickers"
+            class="w-10 h-10 rounded-2xl bg-white/10 hover:bg-rose-500/25 text-rose-300 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-icons text-sm"></i>
+          </button>
+          <input type="text" id="chatInput" placeholder="Write a romantic or naughty message..." autocomplete="off"
+            class="flex-1 px-3 py-2.5 rounded-2xl bg-white/10 border border-white/15 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500" />
+          <button type="submit" class="w-11 h-10 rounded-2xl rose-gradient text-white flex items-center justify-center shadow shrink-0">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAB 3: SHAYARI & SECRET LOVE NOTES -->
+    <section id="tab-notes" class="hidden space-y-4">
+      <div class="glass-panel rounded-3xl p-4 space-y-3">
+        <h3 class="serif-title text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-feather-pointed text-rose-400"></i> Write a Love Note or Shayari
+        </h3>
+        <textarea id="noteContentInput" rows="3" placeholder="Dil ki baat ya koi pyaari si shayari likho..."
+          class="w-full px-3.5 py-2.5 rounded-2xl bg-white/10 border border-white/15 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-500"></textarea>
+        <div class="flex items-center justify-between gap-2">
+          <select id="noteTagInput" class="px-3 py-2 rounded-xl bg-white/10 border border-white/15 text-xs text-rose-200 font-semibold">
+            <option value="Romantic Shayari" class="bg-slate-900">Romantic Shayari 🌹</option>
+            <option value="Bold & Intimate" class="bg-slate-900">Bold & Intimate 🔥</option>
+            <option value="Late Night Thought" class="bg-slate-900">Late Night Thought 🌙</option>
+            <option value="Sorry / Manana" class="bg-slate-900">Sorry / Manana 🥺</option>
+          </select>
+          <button onclick="postLoveNote()" class="px-5 py-2 rounded-xl rose-gradient text-xs font-bold text-white shadow flex items-center gap-1.5">
+            <i class="fa-solid fa-paper-plane"></i> Post Note
+          </button>
+        </div>
+      </div>
+
+      <div id="loveNotesFeed" class="space-y-3"></div>
+    </section>
+
+    <!-- TAB 4: TRUTH & DARE + LOVE COUPONS -->
+    <section id="tab-play" class="hidden space-y-4">
+      <div class="glass-panel rounded-3xl p-5 text-center space-y-4 border border-purple-500/30">
+        <div class="flex items-center justify-center gap-2">
+          <button onclick="setGameMode('romantic')" id="modeRomantic" class="px-3 py-1 rounded-full text-[11px] font-bold rose-gradient text-white">Romantic 💖</button>
+          <button onclick="setGameMode('funny')" id="modeFunny" class="px-3 py-1 rounded-full text-[11px] font-bold bg-white/10 text-slate-300">Funny 😂</button>
+          <button onclick="setGameMode('spicy')" id="modeSpicy" class="px-3 py-1 rounded-full text-[11px] font-bold bg-white/10 text-slate-300">Bold / Spicy 🔥</button>
+        </div>
+
+        <div class="min-h-[120px] rounded-2xl bg-black/35 border border-white/10 p-4 flex flex-col items-center justify-center">
+          <span id="cardCategoryBadge" class="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 mb-1.5">TAP TRUTH OR DARE</span>
+          <p id="gamePromptText" class="serif-title text-base text-white leading-relaxed">
+            Ready to play? Choose Truth or Dare below!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="drawGameCard('TRUTH')" class="py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-extrabold shadow-lg active:scale-95 transition">
+            <i class="fa-solid fa-circle-question mr-1"></i> TRUTH
+          </button>
+          <button onclick="drawGameCard('DARE')" class="py-3 rounded-2xl rose-gradient text-white text-xs font-extrabold shadow-lg active:scale-95 transition">
+            <i class="fa-solid fa-fire mr-1"></i> DARE
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-3xl p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-ticket"></i> Redeemable Love Coupons
+          </h3>
+          <button onclick="giftNewCoupon()" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 text-[11px] font-bold border border-amber-400/30">
+            + Gift Coupon
+          </button>
+        </div>
+        <div id="couponsList" class="space-y-2.5"></div>
+      </div>
+    </section>
+
+    <!-- TAB 5: BUCKET LIST -->
+    <section id="tab-bucket" class="hidden space-y-4">
+      <div class="glass-panel rounded-3xl p-4 space-y-3">
+        <h3 class="serif-title text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-plane-departure text-amber-400"></i> Our Dream Trips & Bucket List
+        </h3>
+        <div class="flex gap-2">
+          <input type="text" id="newBucketInput" placeholder="Add a trip, date idea, or dream together..."
+            class="flex-1 px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/15 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400" />
+          <button onclick="addBucketItem()" class="px-4 py-2.5 rounded-xl gold-rose-gradient text-xs font-extrabold text-slate-950 shadow">
+            Add
+          </button>
+        </div>
+        <div id="bucketListContainer" class="space-y-2 pt-1"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FULLSCREEN PHOTO VIEWER MODAL -->
+  <div id="photoLightbox" onclick="closePhotoLightbox()" class="hidden fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4">
+    <button class="absolute top-6 right-5 w-10 h-10 rounded-full bg-white/15 text-white flex items-center justify-center text-lg">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img id="lightboxImg" src="" alt="Private Photo" class="max-h-[82vh] max-w-full rounded-2xl shadow-2xl object-contain" />
+    <p class="text-xs text-slate-400 mt-3">Tap anywhere to close</p>
+  </div>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav id="bottomNav" class="hidden fixed bottom-0 inset-x-0 z-30 bg-[#140720]/95 backdrop-blur-xl border-t border-white/10 px-1 py-2">
+    <div class="max-w-lg mx-auto grid grid-cols-5 gap-1 text-center">
+      <button onclick="switchTab('home')" id="nav-home" class="py-1.5 rounded-xl text-rose-400 flex flex-col items-center gap-0.5">
+        <i class="fa-solid fa-heart-pulse text-sm"></i>
+        <span class="text-[10px] font-bold">Us Live</span>
+      </button>
+      <button onclick="switchTab('chat')" id="nav-chat" class="py-1.5 rounded-xl text-slate-400 flex flex-col items-center gap-0.5">
+        <i class="fa-solid fa-fire-flame-curved text-sm"></i>
+        <span class="text-[10px] font-bold">Hot Chat</span>
+      </button>
+      <button onclick="switchTab('notes')" id="nav-notes" class="py-1.5 rounded-xl text-slate-400 flex flex-col items-center gap-0.5">
+        <i class="fa-solid fa-envelope-open-text text-sm"></i>
+        <span class="text-[10px] font-bold">Shayari</span>
+      </button>
+      <button onclick="switchTab('play')" id="nav-play" class="py-1.5 rounded-xl text-slate-400 flex flex-col items-center gap-0.5">
+        <i class="fa-solid fa-dice text-sm"></i>
+        <span class="text-[10px] font-bold">Play</span>
+      </button>
+      <button onclick="switchTab('bucket')" id="nav-bucket" class="py-1.5 rounded-xl text-slate-400 flex flex-col items-center gap-0.5">
+        <i class="fa-solid fa-earth-asia text-sm"></i>
+        <span class="text-[10px] font-bold">Dreams</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- TOAST -->
+  <div id="coupleToast" class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-50 rose-gradient text-white px-4 py-2 rounded-full text-xs font-bold shadow-2xl">
+    Saved!
+  </div>
+
+  <!-- EXCLUSIVE 2-ACCOUNT AUTH + FACE ID + STICKERS -->
+  <script>
+    const ALLOWED_ACCOUNTS = {
+      bunny: { identity: "Bunny", displayName: "🐰 Bunny (Shaban)", passcode: "0710" },
+      reshu: { identity: "Mutu", displayName: "👸🏻 Mutu (Reshu)", passcode: "0610" }
+    };
+
+    let myIdentity = localStorage.getItem("bm_identity") || "";
+
+    function selectLoginAccount(key) {
+      document.getElementById("loginUserId").value = key;
+      const bBtn = document.getElementById("pickBunnyBtn");
+      const rBtn = document.getElementById("pickReshuBtn");
+
+      if (key === "bunny") {
+        bBtn.className = "p-3 rounded-2xl border border-indigo-400 bg-indigo-500/25 text-center transition";
+        rBtn.className = "p-3 rounded-2xl border border-white/15 bg-white/5 text-center transition";
+      } else {
+        rBtn.className = "p-3 rounded-2xl border border-rose-400 bg-rose-500/25 text-center transition";
+        bBtn.className = "p-3 rounded-2xl border border-white/15 bg-white/5 text-center transition";
+      }
+    }
+
+    function checkSavedFaceID() {
+      const savedCredId = localStorage.getItem("bm_webauthn_id");
+      const savedOwner = localStorage.getItem("bm_webauthn_user");
+      if (savedCredId && savedOwner && ALLOWED_ACCOUNTS[savedOwner]) {
+        document.getElementById("faceIdQuickBox").classList.remove("hidden");
+        document.getElementById("faceIdBtnLabel").textContent = `Face ID Unlock (${ALLOWED_ACCOUNTS[savedOwner].identity})`;
+        selectLoginAccount(savedOwner);
+      }
+    }
+    checkSavedFaceID();
+
+    document.getElementById("coupleLoginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const errEl = document.getElementById("loginErrorMsg");
+      errEl.classList.add("hidden");
+
+      const userKey = document.getElementById("loginUserId").value.trim().toLowerCase();
+      const passVal = document.getElementById("loginPasscode").value.trim();
+
+      const account = ALLOWED_ACCOUNTS[userKey];
+      if (!account || account.passcode !== passVal) {
+        if (navigator.vibrate) navigator.vibrate([80, 50, 80]);
+        errEl.textContent = "Access Denied! Invalid Account ID or Secret Passcode.";
+        errEl.classList.remove("hidden");
+        return;
+      }
+
+      completeLogin(userKey);
+    });
+
+    function completeLogin(userKey) {
+      const account = ALLOWED_ACCOUNTS[userKey];
+      myIdentity = account.identity;
+      localStorage.setItem("bm_identity", myIdentity);
+      localStorage.setItem("bm_account_key", userKey);
+
+      document.getElementById("loginPasscode").value = "";
+      document.getElementById("loginScreen").classList.add("hidden");
+      document.getElementById("activeProfileTag").textContent = `Logged in as ${account.displayName}`;
+      document.getElementById("coupleApp").classList.remove("hidden");
+      document.getElementById("bottomNav").classList.remove("hidden");
+
+      if (localStorage.getItem("bm_webauthn_id")) {
+        document.getElementById("faceIdSetupText").textContent = "Face ID On";
+      }
+      if (navigator.vibrate) navigator.vibrate(35);
+    }
+
+    function logoutAndLock() {
+      document.getElementById("coupleApp").classList.add("hidden");
+      document.getElementById("bottomNav").classList.add("hidden");
+      document.getElementById("loginScreen").classList.remove("hidden");
+      checkSavedFaceID();
+    }
+
+    async function registerFaceID() {
+      if (!window.PublicKeyCredential) {
+        alert("Face ID / Biometrics is not supported in this browser. Open in Safari on iPhone or Chrome on Android.");
+        return;
+      }
+
+      const currentKey = localStorage.getItem("bm_account_key") || "bunny";
+      const account = ALLOWED_ACCOUNTS[currentKey];
+
+      try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const userIdBytes = new TextEncoder().encode(currentKey);
+
+        const credential = await navigator.credentials.create({
+          publicKey: {
+            challenge,
+            rp: { name: "Bunny & Mutu Private World" },
+            user: {
+              id: userIdBytes,
+              name: currentKey,
+              displayName: account.displayName
+            },
+            pubKeyCredParams: [{ alg: -7, type: "public-key" }, { alg: -257, type: "public-key" }],
+            authenticatorSelection: {
+              authenticatorAttachment: "platform",
+              userVerification: "required"
+            },
+            timeout: 60000
+          }
+        });
+
+        if (credential) {
+          const rawIdBase64 = btoa(String.fromCharCode(...new Uint8Array(credential.rawId)));
+          localStorage.setItem("bm_webauthn_id", rawIdBase64);
+          localStorage.setItem("bm_webauthn_user", currentKey);
+          document.getElementById("faceIdSetupText").textContent = "Face ID On";
+          showCoupleToast("Face ID / Biometrics Activated!");
+        }
+      } catch (err) {
+        alert("Could not activate Face ID: " + err.message);
+      }
+    }
+
+    async function unlockWithFaceID() {
+      const savedCredId = localStorage.getItem("bm_webauthn_id");
+      const savedOwner = localStorage.getItem("bm_webauthn_user");
+      if (!savedCredId || !savedOwner) return;
+
+      try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const rawId = Uint8Array.from(atob(savedCredId), c => c.charCodeAt(0));
+
+        const assertion = await navigator.credentials.get({
+          publicKey: {
+            challenge,
+            allowCredentials: [{ id: rawId, type: "public-key" }],
+            userVerification: "required",
+            timeout: 60000
+          }
+        });
+
+        if (assertion) {
+          completeLogin(savedOwner);
+          showCoupleToast("Unlocked with Face ID ❤️");
+        }
+      } catch (err) {
+        document.getElementById("loginErrorMsg").textContent = "Face ID canceled or failed. Enter passcode below.";
+        document.getElementById("loginErrorMsg").classList.remove("hidden");
+      }
+    }
+
+    function openPhotoLightbox(src) {
+      document.getElementById("lightboxImg").src = src;
+      document.getElementById("photoLightbox").classList.remove("hidden");
+    }
+
+    function closePhotoLightbox() {
+      document.getElementById("photoLightbox").classList.add("hidden");
+      document.getElementById("lightboxImg").src = "";
+    }
+
+    function switchTab(tabName) {
+      ['home', 'chat', 'notes', 'play', 'bucket'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tabName);
+        const navBtn = document.getElementById(`nav-${t}`);
+        navBtn.className = t === tabName
+          ? "py-1.5 rounded-xl text-rose-400 flex flex-col items-center gap-0.5"
+          : "py-1.5 rounded-xl text-slate-400 flex flex-col items-center gap-0.5";
+      });
+      if (tabName === 'chat') {
+        const box = document.getElementById("chatMessagesBox");
+        box.scrollTop = box.scrollHeight;
+      }
+    }
+
+    // MEGA STICKERS PACKS
+    const STICKER_PACKS = {
+      hot: [
+        { emoji: "🔥", title: "Come Closer...", sub: "Aaj raat door rehna mushkil ho raha hai 😈", style: "hot" },
+        { emoji: "💋", title: "Slow French Kiss", sub: "Aankhein band karo aur mehsoos karo 💋❤️", style: "hot" },
+        { emoji: "🥵", title: "So Hot & Naughty", sub: "Tumhara khayal hi temperature badha deta hai 🔥", style: "hot" },
+        { emoji: "😈", title: "Midnight Craving", sub: "Sirf tum, baarish aur ek lambi raat 🌙🔥", style: "hot" },
+        { emoji: "🫦", title: "Lip Bite Mode", sub: "Dekh kar control karna mushkil hai jaan 🫦", style: "hot" },
+        { emoji: "🛌", title: "Cuddle & Hold Tight", sub: "Baahon mein bhar ke sone ka mann hai ❤️‍🔥", style: "hot" },
+        { emoji: "🍷", title: "Intoxicated By You", sub: "Tumhari aawaz mein alag hi nasha hai 🍷✨", style: "hot" },
+        { emoji: "⚡", title: "Wild & Romantic", sub: "Aaj saari hadein paar karne ka mood hai 🔥", style: "hot" },
+        { emoji: "💘", title: "You Are Mine", sub: "Sirf mera haq hai tum par, har pal 💋", style: "hot" }
+      ],
+      love: [
+        { emoji: "❤️", title: "I Love You Jaan", sub: "Duniya ki har khushi tumse shuru hoti hai ❤️", style: "love" },
+        { emoji: "🌹", title: "Red Rose For You", sub: "Meri zindagi ka sabse khoobsurat phool 🌹", style: "love" },
+        { emoji: "💍", title: "Forever & Always", sub: "Har janam mein sirf tumhara saath chahiye 💍", style: "love" },
+        { emoji: "🫀", title: "Meri Dhadkan", sub: "Dil ke har kone mein sirf tum base ho 💖", style: "love" },
+        { emoji: "🌙", title: "Chand Si Ho Tum", sub: "Raat bhar bas tumhein dekhte rehne ka mann hai 🌙", style: "love" },
+        { emoji: "✨", title: "My Safe Place", sub: "Tumse baat karke saari thakan utar jaati hai ✨", style: "love" },
+        { emoji: "💌", title: "Dil Ki Baat", sub: "Lafz kam pad jaate hain jab tum saamne hoti ho 💌", style: "love" },
+        { emoji: "🕊️", title: "Sukun Ho Tum", sub: "Meri bechainiyon ka ek hi ilaaj ho tum ❤️", style: "love" },
+        { emoji: "👑", title: "My Queen / King", sub: "Mere dil par sirf tumhara raaj hai 👑💖", style: "love" }
+      ],
+      cute: [
+        { emoji: "🥺", title: "Miss You Bahut", sub: "Abhi ke abhi tumhari yaad aa rahi hai 🥺💕", style: "cute" },
+        { emoji: "🤗", title: "Tight Jhappi", sub: "Ek zor ki jhappi bhej raha hoon 🤗❤️", style: "cute" },
+        { emoji: "😘", title: "Flying Ummaah", sub: "Catch karo pyaari si kiss 😘💋", style: "cute" },
+        { emoji: "🙏🏻", title: "Sorry Na Jaan", sub: "Gussa thook do, muskurado ab 🥺🌹", style: "cute" },
+        { emoji: "👸🏻", title: "Nakhre Queen", sub: "Tumhare har nakhre sar aankhon par 👸🏻💖", style: "cute" },
+        { emoji: "🐰", title: "Your Bunny", sub: "Tumhara Bunny hamesha tumhare saath hai 🐰❤️", style: "cute" },
+        { emoji: "☕", title: "Chai & Rain Date", sub: "Baarish aur tum, bas aur kya chahiye ☕🌧️", style: "cute" },
+        { emoji: "📞", title: "Aawaz Sunao", sub: "Ek baar pyaar se baat kar lo jaan 📞💕", style: "cute" },
+        { emoji: "😴", title: "Goodnight Jaan", sub: "Khwaabon mein milte hain, sweet dreams 🌙💋", style: "cute" }
+      ]
+    };
+
+    function toggleStickerDrawer() {
+      const drawer = document.getElementById("stickerDrawer");
+      const willShow = drawer.classList.contains("hidden");
+      drawer.classList.toggle("hidden");
+      if (willShow) renderStickerPack("hot");
+    }
+
+    function renderStickerPack(packKey) {
+      ['hot', 'love', 'cute'].forEach(k => {
+        const btn = document.getElementById(`stkTab${k.charAt(0).toUpperCase() + k.slice(1)}`);
+        btn.className = k === packKey
+          ? "px-2.5 py-1 rounded-lg hot-gradient text-white text-[10px] font-extrabold"
+          : "px-2.5 py-1 rounded-lg bg-white/10 text-slate-300 text-[10px] font-bold";
+      });
+
+      const grid = document.getElementById("stickerGrid");
+      const items = STICKER_PACKS[packKey] || [];
+      grid.innerHTML = items.map(s => `
+        <button type="button" onclick="sendStickerCard('${s.emoji}', '${s.title.replace(/'/g, "\\'")}', '${s.sub.replace(/'/g, "\\'")}', '${s.style}')"
+          class="p-2 rounded-xl ${s.style === 'hot' ? 'bg-rose-950/60 border-rose-500/40 hover:bg-rose-900/70' : 'bg-white/10 border-white/15 hover:bg-white/20'} border text-center flex flex-col items-center gap-0.5 active:scale-95 transition">
+          <span class="text-2xl">${s.emoji}</span>
+          <span class="text-[10px] font-extrabold text-white leading-tight line-clamp-1">${s.title}</span>
+        </button>
+      `).join('');
+    }
+
+    function spawnFloatingHearts(isHot = false) {
+      const emojis = isHot ? ['🔥', '💋', '❤️‍🔥', '😈', '🥵'] : ['❤️', '💖', '💕', '🌹', '✨'];
+      for (let i = 0; i < 10; i++) {
+        const span = document.createElement('span');
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.className = 'floating-heart text-2xl';
+        span.style.left = (15 + Math.random() * 70) + 'vw';
+        span.style.bottom = '15vh';
+        span.style.animationDelay = (i * 0.08) + 's';
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 2000);
+      }
+    }
+
+    function showCoupleToast(msg) {
+      const el = document.getElementById("coupleToast");
+      el.textContent = msg;
+      el.classList.remove("hidden");
+      setTimeout(() => el.classList.add("hidden"), 2500);
+    }
+
+    let currentGameMode = 'romantic';
+    const GAME_CARDS = {
+      romantic: {
+        TRUTH: [
+          "Humari pehli baat-cheet ki kaunsi baat tumhein aaj bhi sabse zyada yaad hai?",
+          "Mere baare mein woh kaunsi ek aadat hai jo tumhein sabse pyaari lagti hai?",
+          "Agar abhi hum dono saath hote, to tum sabse pehle kya karte?",
+          "Jab hum pehli baar kisi pahadi jagah par baarish mein milenge, to kaisa feel hoga?"
+        ],
+        DARE: [
+          "Abhi ek 15-second ka pyaara sa voice note bhejo!",
+          "Hot Chat mein ja kar apni ek cute selfie le kar abhi bhejo!",
+          "2 line ki romantic shayari ya pyaar bhara message Love Notes mein post karo!",
+          "Apne partner ko ek naya pyaara sa nickname do aur aaj poora din usi se bulao!"
+        ]
+      },
+      funny: {
+        TRUTH: [
+          "Sach batao, sabse pehle gussa kaun hota hai aur manata kaun hai?",
+          "Meri kaunsi baat par tumhein sabse zyada hasi aati hai?",
+          "Kabhi phone par baat karte-karte neend aayi hai?"
+        ],
+        DARE: [
+          "Apne partner ki aawaz ya style ki copy karke ek voice note bhejo!",
+          "Agli mulaqat par biryani ya coffee ki treat dene ka promise coupon gift karo!",
+          "Hot Chat mein apni gallery ki sabse funny photo bhejo!"
+        ]
+      },
+      spicy: {
+        TRUTH: [
+          "Raat ko sone se pehle mere baare mein sabse zyada kya sochte ho?",
+          "Humari dream trip par sabse romantic aur wild moment kaunsa hoga?",
+          "Meri kaunsi ek cheez tumhein sabse zyada attract karti hai?"
+        ],
+        DARE: [
+          "Hot Chat mein ja kar apna sabse bold sticker bhejo aur ek naughty line likho!",
+          "Apne partner ko 'Any Wish Granted' wala Love Coupon gift karo!",
+          "Agli call par 1 minute bina ruke sirf apne partner ki tareef karo!"
+        ]
+      }
+    };
+
+    function setGameMode(mode) {
+      currentGameMode = mode;
+      ['romantic', 'funny', 'spicy'].forEach(m => {
+        const btn = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
+        btn.className = m === mode
+          ? "px-3 py-1 rounded-full text-[11px] font-bold rose-gradient text-white"
+          : "px-3 py-1 rounded-full text-[11px] font-bold bg-white/10 text-slate-300";
+      });
+    }
+
+    function drawGameCard(type) {
+      if (navigator.vibrate) navigator.vibrate([40, 30, 60]);
+      const list = GAME_CARDS[currentGameMode][type];
+      const randomPrompt = list[Math.floor(Math.random() * list.length)];
+      document.getElementById("cardCategoryBadge").textContent = `${currentGameMode.toUpperCase()} • ${type}`;
+      document.getElementById("gamePromptText").textContent = randomPrompt;
+      spawnFloatingHearts(currentGameMode === 'spicy');
+    }
+  </script>
+
+  <!-- FIREBASE REALTIME SYNC -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getFirestore, doc, setDoc, addDoc, deleteDoc, collection, onSnapshot, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDC2bPdSPl_r3DpbyuV77Xhz8BzS1jpauw",
+      authDomain: "bonnington-app.firebaseapp.com",
+      projectId: "bonnington-app",
+      storageBucket: "bonnington-app.firebasestorage.app",
+      messagingSenderId: "164741416650",
+      appId: "1:164741416650:web:6f86020cab90e9f0b55633"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const statusDocRef = doc(db, "couple_world", "live_status");
+    let targetCountdownDate = Date.now() + 30 * 24 * 60 * 60 * 1000;
+
+    onSnapshot(statusDocRef, async (snap) => {
+      if (!snap.exists()) {
+        await setDoc(statusDocRef, {
+          Bunny: { emoji: "🥰", mood: "Missing Mutu", note: "Thinking about you...", updatedAt: Date.now() },
+          Mutu: { emoji: "💖", mood: "Feeling Loved", note: "Waiting for my Bunny...", updatedAt: Date.now() },
+          lastHeartbeat: "Tap the heart to send a love pulse!",
+          countdownTitle: "Our Dream Rainy Mountain Trip 🏔️",
+          countdownTarget: targetCountdownDate
+        });
+        return;
+      }
+
+      const data = snap.data();
+      if (data.Bunny) {
+        document.getElementById("bunnyMoodEmoji").textContent = data.Bunny.emoji || "🥰";
+        document.getElementById("bunnyMoodText").textContent = data.Bunny.mood || "Missing Mutu";
+        document.getElementById("bunnyNote").textContent = `"${data.Bunny.note || ''}"`;
+        document.getElementById("bunnyTime").textContent = formatShortTime(data.Bunny.updatedAt);
+      }
+      if (data.Mutu) {
+        document.getElementById("mutuMoodEmoji").textContent = data.Mutu.emoji || "💖";
+        document.getElementById("mutuMoodText").textContent = data.Mutu.mood || "Feeling Loved";
+        document.getElementById("mutuNote").textContent = `"${data.Mutu.note || ''}"`;
+        document.getElementById("mutuTime").textContent = formatShortTime(data.Mutu.updatedAt);
+      }
+      if (data.lastHeartbeat) {
+        document.getElementById("lastHeartbeatLabel").textContent = data.lastHeartbeat;
+      }
+      if (data.countdownTitle) {
+        document.getElementById("countdownTitleDisplay").textContent = data.countdownTitle;
+      }
+      if (data.countdownTarget) {
+        targetCountdownDate = data.countdownTarget;
+      }
+    });
+
+    function formatShortTime(ts) {
+      if (!ts) return "Live";
+      return new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    window.setQuickMood = async (emoji, mood) => {
+      const who = localStorage.getItem("bm_identity") || "Bunny";
+      if (navigator.vibrate) navigator.vibrate(40);
+      await setDoc(statusDocRef, {
+        [who]: { emoji, mood, updatedAt: Date.now() }
+      }, { merge: true });
+      showCoupleToast(`${who}'s mood updated to ${mood}!`);
+    };
+
+    window.saveCustomStatusNote = async () => {
+      const who = localStorage.getItem("bm_identity") || "Bunny";
+      const val = document.getElementById("customStatusInput").value.trim();
+      if (!val) return;
+      await setDoc(statusDocRef, {
+        [who]: { note: val, updatedAt: Date.now() }
+      }, { merge: true });
+      document.getElementById("customStatusInput").value = "";
+      showCoupleToast("Status note updated!");
+    };
+
+    window.sendHeartbeat = async () => {
+      const who = localStorage.getItem("bm_identity") || "Bunny";
+      const partner = who === "Bunny" ? "Mutu" : "Bunny";
+      if (navigator.vibrate) navigator.vibrate([70, 50, 120]);
+      spawnFloatingHearts();
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      await setDoc(statusDocRef, {
+        lastHeartbeat: `💓 ${who} sent a heartbeat to ${partner} at ${timeStr}`
+      }, { merge: true });
+      showCoupleToast(`Heartbeat sent to ${partner}!`);
+    };
+
+    window.toggleCountdownEditor = () => {
+      document.getElementById("countdownEditor").classList.toggle("hidden");
+    };
+
+    window.saveCountdownSettings = async () => {
+      const title = document.getElementById("cdTitleInput").value.trim();
+      const dateStr = document.getElementById("cdDateInput").value;
+      if (!dateStr) return;
+      const targetTs = new Date(dateStr).getTime();
+      await setDoc(statusDocRef, {
+        countdownTitle: title || "Our Special Day ❤️",
+        countdownTarget: targetTs
+      }, { merge: true });
+      document.getElementById("countdownEditor").classList.add("hidden");
+      showCoupleToast("Countdown updated!");
+    };
+
+    setInterval(() => {
+      const diff = Math.max(0, targetCountdownDate - Date.now());
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      document.getElementById("cdDays").textContent = String(d).padStart(2, '0');
+      document.getElementById("cdHours").textContent = String(h).padStart(2, '0');
+      document.getElementById("cdMins").textContent = String(m).padStart(2, '0');
+      document.getElementById("cdSecs").textContent = String(s).padStart(2, '0');
+    }, 1000);
+
+    // PRIVATE REALTIME TEXT CHAT + PHOTOS + STICKERS
+    const chatCol = collection(db, "couple_chat");
+    onSnapshot(query(chatCol, orderBy("timestamp", "asc"), limit(120)), (snap) => {
+      const box = document.getElementById("chatMessagesBox");
+      const me = localStorage.getItem("bm_identity") || "Bunny";
+
+      if (snap.empty) {
+        box.innerHTML = `<p class="text-xs text-slate-400 text-center py-8">No messages yet. Send a selfie, hot sticker, or message! 🔥📸</p>`;
+        return;
+      }
+
+      box.innerHTML = snap.docs.map(d => {
+        const msg = d.data();
+        const isMine = msg.sender === me;
+        const timeStr = msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+
+        if (msg.isPhoto && msg.imageData) {
+          return `
+            <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'} sticker-card-anim">
+              <span class="text-[10px] text-slate-400 mb-1 px-1">${msg.sender === 'Bunny' ? '🐰 Bunny' : '👸🏻 Mutu'} • ${timeStr}</span>
+              <div class="max-w-[75%] p-1.5 rounded-3xl ${isMine ? 'rose-gradient' : 'bg-white/15'} shadow-lg relative">
+                <img src="${msg.imageData}" onclick="openPhotoLightbox('${msg.imageData}')" alt="Private Photo"
+                  class="rounded-2xl max-h-60 w-auto object-cover cursor-pointer" />
+                <div class="flex items-center justify-between px-2 pt-1.5 pb-0.5">
+                  <span class="text-[10px] text-white/85 font-semibold">Tap to zoom</span>
+                  <button onclick="reactToChatMsg('${d.id}', ${msg.loved ? 'false' : 'true'})" class="text-xs">
+                    ${msg.loved ? '❤️‍🔥' : '🤍'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        if (msg.isSticker) {
+          const isHot = msg.style === 'hot';
+          return `
+            <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'} sticker-card-anim">
+              <span class="text-[10px] text-slate-400 mb-1 px-1">${msg.sender === 'Bunny' ? '🐰 Bunny' : '👸🏻 Mutu'} • ${timeStr}</span>
+              <div onclick="reactToChatMsg('${d.id}', ${msg.loved ? 'false' : 'true'})"
+                class="max-w-[78%] p-4 rounded-3xl ${isHot ? 'hot-gradient shadow-lg shadow-rose-600/30 border border-rose-300/30' : 'rose-gradient shadow-lg shadow-pink-600/25 border border-white/20'} text-center cursor-pointer relative">
+                <div class="text-4xl mb-1.5 drop-shadow">${msg.emoji}</div>
+                <div class="serif-title text-sm font-extrabold text-white">${msg.title}</div>
+                <p class="text-[11px] text-rose-100 mt-1 leading-snug">${msg.sub}</p>
+                ${msg.loved ? `<span class="absolute -bottom-2 ${isMine ? 'left-2' : 'right-2'} bg-slate-900 border border-rose-400/50 rounded-full px-1.5 py-0.2 text-xs">❤️‍🔥</span>` : ''}
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'}">
+            <span class="text-[10px] text-slate-400 mb-0.5 px-1">${msg.sender === 'Bunny' ? '🐰 Bunny' : '👸🏻 Mutu'} • ${timeStr}</span>
+            <div onclick="reactToChatMsg('${d.id}', ${msg.loved ? 'false' : 'true'})"
+              class="max-w-[80%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed cursor-pointer relative ${isMine ? 'rose-gradient text-white rounded-br-sm' : 'bg-white/15 text-white rounded-bl-sm'}">
+              ${msg.text}
+              ${msg.loved ? `<span class="absolute -bottom-2 ${isMine ? 'left-1' : 'right-1'} bg-slate-900 border border-rose-400/50 rounded-full px-1.5 text-[10px]">❤️</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      box.scrollTop = box.scrollHeight;
+    });
+
+    // Compress & Send Private Photo in Chat
+    window.handleChatPhotoUpload = (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      showCoupleToast("Sending private photo...");
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = async () => {
+          const canvas = document.createElement("canvas");
+          const MAX_SIZE = 720;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height && width > MAX_SIZE) {
+            height *= MAX_SIZE / width;
+            width = MAX_SIZE;
+          } else if (height > MAX_SIZE) {
+            width *= MAX_SIZE / height;
+            height = MAX_SIZE;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.65);
+          const me = localStorage.getItem("bm_identity") || "Bunny";
+
+          await addDoc(chatCol, {
+            sender: me,
+            isPhoto: true,
+            imageData: compressedDataUrl,
+            loved: false,
+            timestamp: Date.now()
+          });
+
+          if (navigator.vibrate) navigator.vibrate([40, 30, 60]);
+          spawnFloatingHearts();
+          showCoupleToast("Photo sent! 📸❤️");
+          event.target.value = "";
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    document.getElementById("chatForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = "";
+      const me = localStorage.getItem("bm_identity") || "Bunny";
+      await addDoc(chatCol, {
+        sender: me,
+        isSticker: false,
+        text,
+        loved: false,
+        timestamp: Date.now()
+      });
+    });
+
+    window.sendStickerCard = async (emoji, title, sub, style) => {
+      const me = localStorage.getItem("bm_identity") || "Bunny";
+      if (navigator.vibrate) navigator.vibrate([50, 30, 80]);
+      spawnFloatingHearts(style === 'hot');
+      document.getElementById("stickerDrawer").classList.add("hidden");
+
+      await addDoc(chatCol, {
+        sender: me,
+        isSticker: true,
+        emoji,
+        title,
+        sub,
+        style,
+        loved: false,
+        timestamp: Date.now()
+      });
+    };
+
+    window.reactToChatMsg = async (id, state) => {
+      if (navigator.vibrate) navigator.vibrate(25);
+      await setDoc(doc(db, "couple_chat", id), { loved: state }, { merge: true });
+    };
+
+    window.clearAllChat = async () => {
+      if (!confirm("Delete all private chat messages and photos for both of you?")) return;
+      const snap = await getDocs(chatCol);
+      for (const d of snap.docs) {
+        await deleteDoc(doc(db, "couple_chat", d.id));
+      }
+      showCoupleToast("Chat & photos cleared!");
+    };
+
+    // SHAYARI & LOVE NOTES FEED
+    const notesCol = collection(db, "couple_notes");
+    onSnapshot(query(notesCol, orderBy("timestamp", "desc"), limit(40)), async (snap) => {
+      const feed = document.getElementById("loveNotesFeed");
+      if (snap.empty) {
+        await addDoc(notesCol, {
+          author: "Bunny",
+          tag: "Romantic Shayari",
+          text: "Teri muskurahat se hi mere din ki shuruat hoti hai,\nChahe jitni bhi thakan ho, tujhse baat karke har fikr door hoti hai. ❤️",
+          likes: 1,
+          timestamp: Date.now()
+        });
+        return;
+      }
+
+      feed.innerHTML = snap.docs.map(d => {
+        const n = d.data();
+        return `
+          <div class="glass-panel rounded-3xl p-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-extrabold ${n.author === 'Bunny' ? 'text-indigo-300' : 'text-rose-300'}">
+                  ${n.author === 'Bunny' ? '🐰 Bunny' : '👸🏻 Mutu'}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-rose-200">${n.tag || 'Love Note'}</span>
+              </div>
+              <span class="text-[10px] text-slate-400">${new Date(n.timestamp).toLocaleDateString()}</span>
+            </div>
+            <p class="serif-title text-sm text-white whitespace-pre-line leading-relaxed">${n.text}</p>
+            <div class="flex items-center justify-between pt-1 border-t border-white/10">
+              <button onclick="likeNote('${d.id}', ${n.likes || 0})" class="px-3 py-1 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 text-xs font-bold flex items-center gap-1">
+                ❤️ <span>${n.likes || 0}</span>
+              </button>
+              <button onclick="deleteNote('${d.id}')" class="text-[11px] text-slate-400 hover:text-rose-400">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    });
+
+    window.postLoveNote = async () => {
+      const who = localStorage.getItem("bm_identity") || "Bunny";
+      const text = document.getElementById("noteContentInput").value.trim();
+      const tag = document.getElementById("noteTagInput").value;
+      if (!text) return;
+
+      await addDoc(notesCol, {
+        author: who,
+        tag,
+        text,
+        likes: 0,
+        timestamp: Date.now()
+      });
+      document.getElementById("noteContentInput").value = "";
+      spawnFloatingHearts(tag === 'Bold & Intimate');
+      showCoupleToast("Love Note posted!");
+    };
+
+    window.likeNote = async (id, currentLikes) => {
+      if (navigator.vibrate) navigator.vibrate(30);
+      await setDoc(doc(db, "couple_notes", id), { likes: currentLikes + 1 }, { merge: true });
+    };
+
+    window.deleteNote = async (id) => {
+      if (!confirm("Delete this note?")) return;
+      await deleteDoc(doc(db, "couple_notes", id));
+    };
+
+    // LOVE COUPONS WALLET
+    const couponsCol = collection(db, "couple_coupons");
+    onSnapshot(query(couponsCol, orderBy("timestamp", "desc")), async (snap) => {
+      const box = document.getElementById("couponsList");
+      if (snap.empty) {
+        const defaults = [
+          { title: "No Gussa Pass 🕊️", desc: "Use anytime to instantly end an argument with a smile", from: "Bunny", redeemed: false, timestamp: Date.now() },
+          { title: "10-Min Late Night Voice Note 🌙", desc: "Redeem for an uninterrupted sweet call or voice note", from: "Bunny", redeemed: false, timestamp: Date.now() - 1000 },
+          { title: "Special Biryani & Coffee Treat ☕", desc: "Valid on our next rainy day meetup!", from: "Bunny", redeemed: false, timestamp: Date.now() - 2000 }
+        ];
+        for (const c of defaults) await addDoc(couponsCol, c);
+        return;
+      }
+
+      box.innerHTML = snap.docs.map(d => {
+        const c = d.data();
+        return `
+          <div class="p-3.5 rounded-2xl border ${c.redeemed ? 'bg-white/5 border-white/10 opacity-60' : 'bg-gradient-to-r from-amber-500/15 to-rose-500/15 border-amber-400/30'} flex items-center justify-between gap-3">
+            <div>
+              <div class="text-xs font-extrabold text-white">${c.title}</div>
+              <div class="text-[11px] text-slate-300 mt-0.5">${c.desc}</div>
+              <div class="text-[10px] text-amber-300 mt-1">Gifted by ${c.from}</div>
+            </div>
+            ${c.redeemed
+              ? `<span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-[10px] font-bold shrink-0">USED ✅</span>`
+              : `<button onclick="redeemCoupon('${d.id}', '${c.title}')" class="px-3 py-1.5 rounded-xl gold-rose-gradient text-slate-950 text-xs font-extrabold shrink-0 shadow">Redeem</button>`
+            }
+          </div>
+        `;
+      }).join('');
+    });
+
+    window.giftNewCoupon = async () => {
+      const who = localStorage.getItem("bm_identity") || "Bunny";
+      const title = prompt("Coupon Title (e.g. Any 1 Wish Granted / Unlimited Kisses):");
+      if (!title) return;
+      const desc = prompt("Short description:") || "Special gift coupon for my favorite person!";
+      await addDoc(couponsCol, {
+        title,
+        desc,
+        from: who,
+        redeemed: false,
+        timestamp: Date.now()
+      });
+      showCoupleToast("Love Coupon gifted!");
+    };
+
+    window.redeemCoupon = async (id, title) => {
+      if (!confirm(`Redeem "${title}" now? Your partner will see it!`)) return;
+      if (navigator.vibrate) navigator.vibrate([50, 40, 80]);
+      await setDoc(doc(db, "couple_coupons", id), { redeemed: true }, { merge: true });
+      spawnFloatingHearts();
+      showCoupleToast("Coupon Redeemed! Enjoy ❤️");
+    };
+
+    // BUCKET LIST
+    const bucketCol = collection(db, "couple_bucket");
+    onSnapshot(query(bucketCol, orderBy("timestamp", "asc")), async (snap) => {
+      const box = document.getElementById("bucketListContainer");
+      if (snap.empty) {
+        const initialGoals = [
+          { text: "Rainy mountain trip to Nepal together 🏔️🌧️", done: false, addedBy: "Bunny", timestamp: 1 },
+          { text: "Explore green islands in Philippines & Indonesia 🌴", done: false, addedBy: "Bunny", timestamp: 2 },
+          { text: "Eat hot pakoras & tea while watching rain together ☕", done: false, addedBy: "Bunny", timestamp: 3 }
+        ];
+        for (const g of initialGoals) await addDoc(bucketCol, g);
+        return;
+      }
+
+      box.innerHTML = snap.docs.map(d => {
+        const item = d.data();
+        return `
+          <div onclick="toggleBucketItem('${d.id}', ${!item.done})" class="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between gap-2 cursor-pointer hover:bg-white/10 transition">
+            <div class="flex items-center gap-2.5">
+              <i class="fa-solid ${item.done ? 'fa-circle-check text-emerald-400' : 'fa-circle text-rose-400/50'} text-base"></i>
+              <span class="text-xs font-semibold ${item.done ? 'line-through text-slate-400' : 'text-white'}">${item.text}</span>
+            </div>
+            <button onclick="event.stopPropagation(); deleteBucketItem('${d.id}')" class="text-[11px] text-slate-500 hover:text-rose-400 px-1">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+    });
+
+    window.addBucketItem = async () => {
+      const who = localStorage.getItem("bm_identity") || "Bunny";
+      const val = document.getElementById("newBucketInput").value.trim();
+      if (!val) return;
+      await addDoc(bucketCol, {
+        text: val,
+        done: false,
+        addedBy: who,
+        timestamp: Date.now()
+      });
+      document.getElementById("newBucketInput").value = "";
+      showCoupleToast("Added to Bucket List!");
+    };
+
+    window.toggleBucketItem = async (id, newState) => {
+      if (navigator.vibrate) navigator.vibrate(30);
+      await setDoc(doc(db, "couple_bucket", id), { done: newState }, { merge: true });
+    };
+
+    window.deleteBucketItem = async (id) => {
+      await deleteDoc(doc(db, "couple_bucket", id));
+    };
+  </script>
+</body>
+</html>
